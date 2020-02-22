@@ -7,3 +7,7 @@ m
 app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
 y
 Iapp/src/main/java/de/checkathon/animatedicons/customviews/LottieSwitch.kt,e/0/e06a493536c7d1a66c05826acf7346f8462037a4
+w
+Gapp/src/main/java/de/checkathon/animatedicons/customviews/Extensions.kt,5/3/53b7a0a2420a6b4aa33eaf8f0dec06ef88e574b2
+ç
+]app/src/main/java/de/checkathon/animatedicons/customviews/listeners/OnStateChangedListener.kt,1/c/1caeb4ac97e7b73e291ae00a5bf8999f10e83f9e
