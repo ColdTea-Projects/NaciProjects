@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">DeprecationApp</string>
+
+    <string name="button_reveal">Reveal the truth</string>
+    <string name="checkbox_ios">iOS guys in the room</string>
+
 </resources>
