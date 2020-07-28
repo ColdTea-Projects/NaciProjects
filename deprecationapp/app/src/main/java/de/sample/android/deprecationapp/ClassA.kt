@@ -4,11 +4,11 @@ class ClassA {
     private val a = "Android is"
     private val b = "better than the others"
 
-    @Deprecated(
-        level = DeprecationLevel.WARNING,
-        message = "this functions tells the truth no matter what, so it is not wise to use! Please use ClassB.getMessage!",
-        replaceWith= ReplaceWith("ClassB.getTheMessage(isThereAnIOSDeveloperAround)","com.example.myanimation.ClassB")
-        )
+//    @Deprecated(
+//        //level = DeprecationLevel.WARNING,
+//        message = "this functions tells the truth no matter what, so it is not wise to use! Please use ClassB.getMessage!",
+//        //replaceWith= ReplaceWith("ClassB.getTheMessage(isThereAnIOSDeveloperAround)","com.example.myanimation.ClassB")
+//        )
     fun getTheMessage(): String {
         return a + " " + b
     }
