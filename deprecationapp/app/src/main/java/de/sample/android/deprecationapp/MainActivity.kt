@@ -10,9 +10,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val cA = ClassA()
-
+        val a = true
         button_nested_layout.setOnClickListener {
-            textview_main.text = cA.getTheMessage()
+            textview_main.text = ClassB.getTheMessage(a)
         }
     }
 }

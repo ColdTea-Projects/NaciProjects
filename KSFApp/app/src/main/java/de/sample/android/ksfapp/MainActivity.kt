@@ -73,9 +73,11 @@ class MainActivity : AppCompatActivity() {
         mySearchEngine.run {
             websites = theWeb
         }
+        val a = ""
+        a.isNotBlank()
         //configure
         mySearchEngine.apply {
-            query = Query(50, SortType.ALPHABETICAL, false)
+            query = Query(5, SortType.DATE, true)
         }.search()//go
             .let {
                 it.map { website ->
@@ -83,15 +85,15 @@ class MainActivity : AppCompatActivity() {
                 }
             }//get
 
-//        repeat(2) {
-//            mySearchEngine.takeIf {
-//                it.query.sortType != null
-//            }?.takeUnless {
-//                it.websites.size > 1000
-//            }?.logTheFullSize()
-//        }
+        repeat(2) {
+            mySearchEngine.takeIf {
+                it.query.sortType != null
+            }?.takeUnless {
+                it.websites.size > 1000
+            }?.logTheFullSize()
+        }
 
-//        mySearchEngine.blowUpIfEmpty()
+        //mySearchEngine.blowUpIfEmpty()
     }
 
 }

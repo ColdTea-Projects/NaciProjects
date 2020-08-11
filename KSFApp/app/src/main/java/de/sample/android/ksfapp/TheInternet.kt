@@ -7,35 +7,38 @@ class SearchEngine {
     lateinit var query: Query
     lateinit var websites: Array<WebSite>
 
-    fun search(): List<WebSite> {
-        return with(query) {//use
-            websites.filter {
-                it.isDead == query.showDeadPages
-            }.toMutableList().apply {//configure
-                sortType?.let {
-                    when (sortType) {
-                        SortType.ALPHABETICAL ->
-                            this.sortBy { it.address }
-                        SortType.DATE ->
-                            this.sortBy {
-                                it.date
-                            }
-                    }
+    fun search(): List<WebSite> = with(query) {
+        //use
+        websites.filter {
+            it.isDead == query.showDeadPages
+        }.toMutableList()
+            .apply {
+                //configure
+            sortType?.let {
+                when (sortType) {
+                    SortType.ALPHABETICAL ->
+                        this.sortBy { it.address }
+                    SortType.DATE ->
+                        this.sortBy {
+                            it.date
+                        }
                 }
-            }.apply {//configure
-                if (maxPageNumber < this.size)
-                    this.removeAll(this.subList(maxPageNumber - 1, this.size - 1))
-            }.also {//utilize
-                Log.i("Website", "${it.size.toString()} search results found")
             }
+        }.apply {
+                //configure
+            if (maxPageNumber < this.size)
+                this.removeAll(this.subList(maxPageNumber - 1, this.size - 1))
+        }.also {
+                //utilize
+            Log.i("Website", "${it.size.toString()} search results found")
         }
     }
 
-    fun blowUpIfEmpty(){
+    fun blowUpIfEmpty() {
         TODO("Cuz we did not implement anything yet used the function!!")
     }
 
-    fun logTheFullSize(){
+    fun logTheFullSize() {
         Log.i("Website", websites.size.toString())
     }
 }
