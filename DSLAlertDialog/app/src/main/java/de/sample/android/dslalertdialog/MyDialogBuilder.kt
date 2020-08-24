@@ -4,7 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 
-//@MyDialogBuilderMarker
+@MyDialogBuilderMarker
 class MyDialogBuilder {
     var context: Context? = null
     var titleText: String = ""
@@ -18,18 +18,14 @@ class MyDialogBuilder {
         this.context = context()
     }
 
-    fun titleText(titleText: () -> String) {
-        this.titleText = titleText()
+    infix fun titleText(titleText: String) {
+        this.titleText = titleText
     }
-
+//
     fun message(message: () -> String) {
         this.message = message()
     }
-
-    fun negativeButton(lambda: MyButtonItemBuilder.() -> Unit) {
-        negativeButtonItem = MyButtonItemBuilder().apply(lambda).build()
-    }
-
+//
     fun positiveButton(
         positiveText: String,
         positiveAction: (dialog: DialogInterface, which: Int) -> Unit
@@ -37,6 +33,12 @@ class MyDialogBuilder {
         this.positiveText = positiveText
         this.onPositiveClickAction = positiveAction
     }
+//
+    fun negativeButton(lambda: MyButtonItemBuilder.() -> Unit) {
+        negativeButtonItem = MyButtonItemBuilder().apply(lambda).build()
+    }
+
+
 
     fun build(): AlertDialog.Builder {
         val builder = AlertDialog.Builder(context)
@@ -76,5 +78,5 @@ data class MyButtonItem(
     val onClickAction: (dialog: DialogInterface, which: Int) -> Unit = { _, _ -> }
 )
 
-//@DslMarker
-//annotation class MyDialogBuilderMarker
+@DslMarker
+annotation class MyDialogBuilderMarker
