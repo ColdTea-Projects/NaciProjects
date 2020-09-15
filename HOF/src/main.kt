@@ -1,4 +1,5 @@
 import cars.Porsche
+import cars.StringToUnit
 import cars.Volkswagen
 
 //Lambda expressions
@@ -22,22 +23,38 @@ fun main(args: Array<String>) {
     val list = listOf(1,2,3,4,5,6,7,8,9,10)
 
     //region predicate
-    list.filter(filterC).map {
+    list.filter(filterC).map{
         printMe(it.toString())
     }
-    // endregion
 
-    //regions observer
+
+
+//    list.filter(filterC).map {
+//        printMe(it.toString())
+//    }
+    // endregion
 
     val car1 = Volkswagen()
     val car2 = Porsche()
 
-    val carObserver: (String) -> Unit = {
-        println("I drive a $it")
+    val carObserver: StringToUnit = {
+        printMe("I drive a $it")
     }
 
     car1.drive(carObserver)
     car2.drive(carObserver)
+
+    //region observer
+
+//    val car1 = Volkswagen()
+//    val car2 = Porsche()
+//
+//    val carObserver: (String) -> Unit = {
+//        printMe("I drive a $it")
+//    }
+//
+//    car1.drive(carObserver)
+//    car2.drive(carObserver)
 
     //endregion
 }
