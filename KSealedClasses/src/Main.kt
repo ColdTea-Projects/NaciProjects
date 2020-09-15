@@ -1,5 +1,5 @@
 fun main(args: Array<String>) {
-    println("Hello World where superheroes exist!")
+    println("Hello World where superheroes exist! \n\n")
 
     call(SuperHero.Aquaman)
 
@@ -20,12 +20,13 @@ fun call(superHero: SuperHero)
 }
 
 //assingment
-////    =
-////    when(superHero){
-////        is SuperHero.Aquaman -> "Swim"
-////        is SuperHero.Batman -> "Being awsome"
-////    }
-//}
+//    =
+//    when(superHero){
+//        is SuperHero.Aquaman -> println("Swim")
+//        is SuperHero.Batman -> println("Being awsome")
+//        else -> {}
+//    }
+
 
 // Finite-state Machine
 //{
