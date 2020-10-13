@@ -12,5 +12,5 @@ data class UserAndAddress(
         parentColumn = "user_id",
         entityColumn = "fk_user_id"
     )
-    val address: AddressEntity
+    val address: AddressEntity?
 )

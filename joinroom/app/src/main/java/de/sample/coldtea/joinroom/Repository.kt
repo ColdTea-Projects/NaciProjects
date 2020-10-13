@@ -18,7 +18,7 @@ class Repository(context: Context) {
     suspend fun insertOrUpdate(){
         database.addressDao.insertOrUpdate(AddressEntity(0, 0, "Dirschauerstraße", "Berlin"))
         database.addressDao.insertOrUpdate(AddressEntity(1, 1, "Asbachstraße", "Weimar"))
-        database.addressDao.insertOrUpdate(AddressEntity(2, 2, "Nordernfeldstraße", "Berlin"))
+        database.addressDao.insertOrUpdate(AddressEntity(2, 2, "Nordernfeldstraße", "Bremerhaven"))
 
         database.paymentDao.insertOrUpdate(PaymentEntity(0, 0, "Credit Card", "14932848234812841238", "Deutsche Bank"))
         database.paymentDao.insertOrUpdate(PaymentEntity(1, 0, "Paypal", "14932841238", "Paypal GmbH"))

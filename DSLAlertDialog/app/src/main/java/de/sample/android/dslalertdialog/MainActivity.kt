@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         val dialog = myDialogBuilder {
             with{ this@MainActivity}
 
-            this titleText "Cooler Dialog"
+            titleText = "Cooler Dialog"
 
             message{ "The body of my cooler dialog" }
             positiveButton("Yes") { dialog, which ->

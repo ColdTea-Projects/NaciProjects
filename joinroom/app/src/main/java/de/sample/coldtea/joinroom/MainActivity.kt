@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
                 val pairs = repository.database.userDao.getUserAndAddressPairs()
                 var text = ""
                 for (pair in pairs){
-                    text += "\n ${pair.user.name} ${pair.user.surname}from ${pair.address.street} ${pair.address.city}"
+                    text += "\n ${pair.user.name} ${pair.user.surname}from ${pair.address?.street} ${pair.address?.city}"
                 }
                 binding.textView.text = text
             }
