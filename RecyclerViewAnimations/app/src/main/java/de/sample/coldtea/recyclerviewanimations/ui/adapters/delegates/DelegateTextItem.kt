@@ -1,22 +1,20 @@
 package de.sample.coldtea.recyclerviewanimations.ui.adapters.delegates
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 import de.sample.coldtea.recyclerviewanimations.databinding.MessageboxLayoutBinding
 import de.sample.coldtea.recyclerviewanimations.model.TextData
-import kotlin.random.Random
 
-class DelegateTextMessage :
-    AbsListItemAdapterDelegate<TextData, TextData, DelegateTextMessage.TextItemAdapterDelegateViewHolder>() {
+class DelegateTextItem :
+    AbsListItemAdapterDelegate<TextData, TextData, DelegateTextItem.TextItemAdapterDelegateViewHolder>() {
 
     override fun isForViewType(
         item: TextData,
         items: MutableList<TextData>,
         position: Int
-    ) = item is TextData
+    ) = true
 
     override fun onBindViewHolder(
         item: TextData,
@@ -42,12 +40,6 @@ class DelegateTextMessage :
 
         fun bind(textData: TextData) {
             binding.text = "${textData.timestamp} - ${textData.text}"
-            binding.messageText.setBackgroundColor(
-                Color.rgb(
-                    Random.nextInt(255),
-                    Random.nextInt(255),
-                    Random.nextInt(255))
-            )
         }
     }
 }

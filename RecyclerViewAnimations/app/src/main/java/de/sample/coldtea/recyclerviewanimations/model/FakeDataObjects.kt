@@ -1,7 +1,5 @@
 package de.sample.coldtea.recyclerviewanimations.model
 
-import kotlin.random.Random
-
 data class TextData(
     val text: String,
     val timestamp: Long
@@ -22,8 +20,4 @@ data class TextData(
         )
 
     }
-}
-
-fun List<String>.getRandomItem(): String{
-    return this[Random.nextInt(this.size)]
 }
