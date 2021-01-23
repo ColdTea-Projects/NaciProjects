@@ -1,4 +1,4 @@
-import java.net.Inet4Address
+package bloaters
 
 class PrimitiveObsessionExample{
     //Don't

@@ -1,5 +1,5 @@
-
-class LongListOfParameters{
+package bloaters
+class `Long List Of Parameters`{
     //Don't
     val serviceProviderName = "Naci"
     val serviceProviderAge = 32
