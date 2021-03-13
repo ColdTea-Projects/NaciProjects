@@ -26,3 +26,9 @@ gradle-app.setting
 .idea/runConfigurations.xml
 .idea/sonarlint/
 .idea/workspace.xml
+
+CodeSmells/.idea/misc.xml
+
+CodeSmells/.idea/workspace.xml
+
+CodeSmells/build.gradle.kts
