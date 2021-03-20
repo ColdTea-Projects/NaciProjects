@@ -7,8 +7,10 @@ fun main(args: Array<String>) {
 //    example3() // parent cancelled
 //    example4() // child cancelled
 //    example5() // dispatchers
-    example6() // combined context
+//    example6() // combined context
 
+//    tryCatch()
+    coroutineExceptionHandler()
 }
 
 fun example1() =
@@ -95,4 +97,34 @@ fun example5() = runBlocking(Dispatchers.IO) {
 
 fun example6() = runBlocking(Dispatchers.IO + CoroutineName("TestCoroutine")) {
     println("runBlocking ${Thread.currentThread()}")
+}
+
+fun tryCatch() {
+    val topLevelScope = CoroutineScope(Job())
+    topLevelScope.launch {
+        try {
+//            launch {
+                throw RuntimeException("RuntimeException in nested coroutine")
+//            }
+        } catch (exception: Exception) {
+            println("Handle $exception")
+        }
+    }
+    Thread.sleep(100)
+}
+
+fun coroutineExceptionHandler(){
+    val coroutineExceptionHandler = CoroutineExceptionHandler { coroutineContext, exception ->
+        println("Handle $exception in CoroutineExceptionHandler")
+    }
+
+    val topLevelScope = CoroutineScope(Job())
+
+    topLevelScope.launch {
+        launch(coroutineExceptionHandler) {
+            throw RuntimeException("RuntimeException in nested coroutine")
+        }
+    }
+
+    Thread.sleep(100)
 }
