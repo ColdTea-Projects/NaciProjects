@@ -10,32 +10,35 @@ fun main(args: Array<String>) {
 //    example6() // combined context
 
 //    tryCatch()
-    coroutineExceptionHandler()
+//    coroutineExceptionHandler()
+//    launchVsAsync()
+//    propagatedExceptionThroughCoroutineScope()
+    exceptionHandlingPropertiesOfSupervisorScope()
 }
 
 fun example1() =
-    runBlocking {
-        println("runBlocking ${Thread.currentThread()}")
-        launch {
-            println("launch ${Thread.currentThread()}")
+        runBlocking {
+            println("runBlocking ${Thread.currentThread()}")
+            launch {
+                println("launch ${Thread.currentThread()}")
+            }
+            println("runBlocking2 ${Thread.currentThread()}")
         }
-        println("runBlocking2 ${Thread.currentThread()}")
-    }
 
 fun example2() =
-    runBlocking {
-        val job = launch {
-            try {
-                println("launch job")
-                delay(1000)
-                println("finish job")
-            } catch (e: CancellationException) {
-                println("cancel job")
+        runBlocking {
+            val job = launch {
+                 try {
+                    println("launch job")
+                    delay(1000)
+                    println("finish job")
+                } catch (e: CancellationException) {
+                    println("cancel job")
+                }
             }
+            yield() // immediately executes launch
+            job.cancel()
         }
-        yield() // immediately executes launch
-        job.cancel()
-    }
 
 fun example3() = runBlocking {
     val parentJob = launch {
@@ -104,7 +107,7 @@ fun tryCatch() {
     topLevelScope.launch {
         try {
 //            launch {
-                throw RuntimeException("RuntimeException in nested coroutine")
+            throw RuntimeException("RuntimeException in nested coroutine")
 //            }
         } catch (exception: Exception) {
             println("Handle $exception")
@@ -118,9 +121,9 @@ fun coroutineExceptionHandler(){
         println("Handle $exception in CoroutineExceptionHandler")
     }
 
-    val topLevelScope = CoroutineScope(Job())
+    val topLevelScope = CoroutineScope(Job()) //+ coroutineExceptionHandler
 
-    topLevelScope.launch {
+    topLevelScope.launch { //(coroutineExceptionHandler)
         launch(coroutineExceptionHandler) {
             throw RuntimeException("RuntimeException in nested coroutine")
         }
@@ -128,3 +131,65 @@ fun coroutineExceptionHandler(){
 
     Thread.sleep(100)
 }
+
+fun launchVsAsync(){
+    val coroutineExceptionHandler = CoroutineExceptionHandler { coroutineContext, exception ->
+        println("Handle $exception in CoroutineExceptionHandler")
+    }
+
+    val topLevelScope = CoroutineScope(Job() + coroutineExceptionHandler)
+
+    topLevelScope.async { //val defferedResult =
+        throw RuntimeException("RuntimeException in async coroutine")
+    }
+
+//    topLevelScope.launch {
+//        defferedResult.await()
+//    }
+
+    Thread.sleep(100)
+}
+
+fun propagatedExceptionThroughCoroutineScope(){
+    CoroutineScope(Job()).launch {
+        try {
+            coroutineScope {
+                launch { //coroutineScope around this
+                        throw RuntimeException("RuntimeException in nested coroutine")
+                    }
+            }
+        } catch (exception: Exception) {
+            println("Handle $exception")
+        }
+    }
+
+    Thread.sleep(100)
+}
+
+fun exceptionHandlingPropertiesOfSupervisorScope(){
+    val coroutineExceptionHandler = CoroutineExceptionHandler { coroutineContext, exception ->
+        println("Handle $exception in CoroutineExceptionHandler")
+    }
+
+    val topLevelScope = CoroutineScope(Job())
+
+    topLevelScope.launch {
+        val job1 = launch {
+            println("starting Coroutine 1")
+        }
+
+        supervisorScope {
+            val job2 = launch(coroutineExceptionHandler) {
+                println("starting Coroutine 2")
+                throw RuntimeException("Exception in Coroutine 2")
+            }
+
+            val job3 = launch {
+                println("starting Coroutine 3")
+            }
+        }
+    }
+
+    Thread.sleep(100)
+}
+
