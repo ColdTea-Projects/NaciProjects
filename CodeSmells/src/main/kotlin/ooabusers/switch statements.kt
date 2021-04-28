@@ -37,6 +37,17 @@ fun getWorkDone(workerType: Int){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 ////////////////////////////////////////
 interface Employee{
     fun work()

@@ -63,13 +63,13 @@ open class BetterAndroid():SmartPhone{
     }
 }
 
-open class BetterLG(): BetterAndroid(){
+class BetterLG(): BetterAndroid(){
     init {
-        screenProtector = AndroidScreenProtector(13)
+        lgscreenProtector = AndroidScreenProtector(13)
     }
 }
 
-open class BetterHTC: BetterAndroid(){
+class BetterHTC: BetterAndroid(){
     init {
         screenProtector = AndroidScreenProtector(15)
     }
