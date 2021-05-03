@@ -15,7 +15,7 @@ class _WidgetVersicherung{
 }
 
 
-//YAY
+//YEA
 
 interface Widget{
     fun show()
